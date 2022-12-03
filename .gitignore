@@ -1,3 +1,4 @@
 *.o
 *.hi
 day2
+target
