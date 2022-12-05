@@ -1,6 +1,5 @@
 const fs = require("fs");
 
-
 function getStacks(input: string[]): string[][] {
     let stacks: string[][] = [[], [], [], [], [], [], [], [], []];
     for (let i = 7; i >= 0; i--) {
