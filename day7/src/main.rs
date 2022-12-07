@@ -1,6 +1,6 @@
-use std::fs;
-use std::collections::HashMap;
 use regex::Regex;
+use std::collections::HashMap;
+use std::fs;
 
 fn calc_sizes(input: String) -> HashMap<String, i64> {
     let cd = Regex::new(r"^\$ cd (.*)$").unwrap();
@@ -31,13 +31,20 @@ fn calc_sizes(input: String) -> HashMap<String, i64> {
 }
 
 fn part1(input: String) -> i64 {
-    calc_sizes(input).values().filter(|size| **size <= 100000).sum()
+    calc_sizes(input)
+        .values()
+        .filter(|size| **size <= 100000)
+        .sum()
 }
 
 fn part2(input: String) -> i64 {
     let sizes = calc_sizes(input);
     let needed = 30000000 - (70000000 - sizes.get("/").unwrap());
-    *sizes.values().filter(|size| **size >= needed).min().unwrap()
+    *sizes
+        .values()
+        .filter(|size| **size >= needed)
+        .min()
+        .unwrap()
 }
 
 fn main() {
