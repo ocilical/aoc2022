@@ -4,7 +4,7 @@ use std::fs;
 
 fn calc_sizes(input: String) -> HashMap<String, i64> {
     let cd = Regex::new(r"^\$ cd (.*)$").unwrap();
-    let filesize = Regex::new(r"(\d+) .*$").unwrap();
+    let filesize = Regex::new(r"^(\d+) .*$").unwrap();
     let mut path = vec!["/"];
     let mut sizes = HashMap::new();
 
