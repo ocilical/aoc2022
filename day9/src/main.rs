@@ -27,12 +27,10 @@ fn simulate(input: String, length: usize) -> usize {
                     if rope[i - 1].0 != rope[i].0 && rope[i - 1].1 != rope[i].1 {
                         rope[i].0 += (rope[i - 1].0 - rope[i].0).signum();
                         rope[i].1 += (rope[i - 1].1 - rope[i].1).signum();
+                    } else if (rope[i - 1].0 - rope[i].0).abs() > 1 {
+                        rope[i].0 += (rope[i - 1].0 - rope[i].0).signum();
                     } else {
-                        if (rope[i - 1].0 - rope[i].0).abs() > 1 {
-                            rope[i].0 += (rope[i - 1].0 - rope[i].0).signum();
-                        } else {
-                            rope[i].1 += (rope[i - 1].1 - rope[i].1).signum();
-                        }
+                        rope[i].1 += (rope[i - 1].1 - rope[i].1).signum();
                     }
                 }
             }
