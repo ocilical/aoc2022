@@ -75,7 +75,7 @@ fn main() {
     let total: i32 = signals.iter().sum();
     println!("part 1: {}", total);
 
-    let mut im = part2(fs::read_to_string("input2").unwrap());
+    let mut im = part2(fs::read_to_string("input").unwrap());
     im = imageops::resize(&im, 40 * 4, 6 * 4, imageops::FilterType::Nearest);
     let _ = im.save("result.png");
 }
