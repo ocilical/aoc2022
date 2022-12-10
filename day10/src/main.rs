@@ -15,7 +15,7 @@ fn part1(input: String) -> Vec<i32> {
         } else if !working {
             working = true;
         } else {
-            let imm = instr[ip].split(" ").collect::<Vec<&str>>()[1]
+            let imm = instr[ip].split(' ').collect::<Vec<&str>>()[1]
                 .parse::<i32>()
                 .unwrap();
             reg += imm;
@@ -57,7 +57,7 @@ fn part2(input: String) -> RgbImage {
         } else if !working {
             working = true;
         } else {
-            let imm = instr[ip].split(" ").collect::<Vec<&str>>()[1]
+            let imm = instr[ip].split(' ').collect::<Vec<&str>>()[1]
                 .parse::<i32>()
                 .unwrap();
             reg += imm;
