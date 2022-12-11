@@ -73,7 +73,7 @@ fn simulate(input: &str, rounds: i32, part2: bool) -> i64 {
     let lcm = monkeys
         .iter()
         .map(|m| m.test)
-        .reduce(|a, b| integer::lcm(a, b))
+        .reduce(integer::lcm)
         .unwrap();
     for _ in 0..rounds {
         for i in 0..monkeys.len() {
