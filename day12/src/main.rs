@@ -89,9 +89,7 @@ fn part2(input: &str) -> usize {
     for row in 0..map.len() {
         for col in 0..map[0].len() {
             if map[row][col] == 97 {
-                //println!("{} {}", row, col);
                 let path = find_path(&mut map.to_vec(), (row, col));
-                //println!("{}", dist);
                 if let Some(p) = path {
                     dists.push(p.len());
                 }
