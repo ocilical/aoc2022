@@ -57,10 +57,6 @@ fn get_packets(input: &str) -> Vec<(Trans, Trans)> {
         .collect::<Vec<(Trans, Trans)>>()
 }
 
-fn is_sorted(packet: (Trans, Trans)) -> bool {
-    packet.0 <= packet.1
-}
-
 fn compare_val(left: &Value, right: &Value) -> Ordering {
     let left = left.clone();
     let right = right.clone();
@@ -111,7 +107,7 @@ fn part1(input: &str) -> usize {
     let packets = get_packets(input);
     packets
         .into_iter()
-        .map(is_sorted)
+        .map(|p| p.0 <= p.1)
         .enumerate()
         .map(|p| if p.1 { p.0 + 1 } else { 0 })
         .sum()
@@ -122,8 +118,12 @@ fn part2(input: &str) -> usize {
     trans.push(Trans::new(serde_json::from_str::<Value>("[[2]]").unwrap()));
     trans.push(Trans::new(serde_json::from_str::<Value>("[[6]]").unwrap()));
     trans.sort();
-    let pos1 = trans.iter().position(|x| serde_json::to_string(&x.val).unwrap() == "[[2]]".to_string());
-    let pos2 = trans.iter().position(|x| serde_json::to_string(&x.val).unwrap() == "[[6]]".to_string());
+    let pos1 = trans
+        .iter()
+        .position(|x| serde_json::to_string(&x.val).unwrap() == "[[2]]".to_string());
+    let pos2 = trans
+        .iter()
+        .position(|x| serde_json::to_string(&x.val).unwrap() == "[[6]]".to_string());
     (pos1.unwrap() + 1) * (pos2.unwrap() + 1)
 }
 
