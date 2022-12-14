@@ -9,7 +9,7 @@ struct Trans {
 
 impl Trans {
     fn new(val: Value) -> Trans {
-        Trans { val: val }
+        Trans { val }
     }
 }
 
