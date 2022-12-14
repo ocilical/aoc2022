@@ -33,7 +33,7 @@ fn parse_cave(input: &str) -> Cave {
         }
     }
 
-    return res;
+    res
 }
 
 #[allow(dead_code)]
