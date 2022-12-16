@@ -48,6 +48,8 @@ fn explore(
     curr: &String,
     open: &mut HashSet<String>,
 ) -> i32 {
+    //println!("memo: {:?}\ntime: {}\ncurr: {}\nopen: {:?}", memo, time, curr, open);
+
     if time <= 0 {
         return 0;
     }
@@ -55,7 +57,6 @@ fn explore(
     if let Some(ans) = memo.get(&(curr.to_string(), time, open.iter().sorted().join(","))) {
         return *ans;
     }
-    // println!("{} {} {}", time, curr, open.iter().sorted().join(","));
 
     let curr_valve = maze.get(curr).unwrap();
     let mut res = 0;
@@ -63,23 +64,22 @@ fn explore(
     for valve in curr_valve.tunnels.iter() {
         res = max(res, explore(memo, maze, time - 1, valve, open))
     }
-    memo.insert((curr.to_string(), time, open.iter().sorted().join(",")), res);
     // with turning valve
     if !open.contains(curr) && curr_valve.flow > 0 {
         open.insert(curr.to_string());
         for valve in curr_valve.tunnels.iter() {
             res = max(res, ((time - 1) * curr_valve.flow) + explore(memo, maze, time - 2, valve, open));
         }
-        println!("{}", open.iter().sorted().join(","));
         open.remove(curr);
     }
 
+    memo.insert((curr.to_string(), time, open.iter().sorted().join(",")), res);
     // without turning on valve
 
     res
 }
 
 fn main() {
-    let input = include_str!("../input2");
+    let input = include_str!("../input");
     println!("{:?}", part1(input));
 }
